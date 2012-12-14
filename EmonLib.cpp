@@ -77,6 +77,10 @@ void EnergyMonitor::calcVI(unsigned int crossings, unsigned int timeout)
         if ((millis()-start)>timeout) st = true;
     }
 
+    // Initialise filter values (otherwise these will be random at power-on)
+    filteredV = sampleV = analogRead(inPinV);
+    filteredI = sampleI = analogRead(inPinI);
+
     //-------------------------------------------------------------------------------------------------------------------------
     // 2) Main measurement loop
     //-------------------------------------------------------------------------------------------------------------------------
